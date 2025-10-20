@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spotify Song Recommender</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+  </head>
+  <body class="bg-dark text-light">
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card bg-secondary text-light border-0 shadow-lg">
+            <div class="card-body p-4 text-center">
+              <h1 class="mb-4">
+                <i class="bi bi-music-note-beamed text-success"></i> 🎵 Spotify
+                Song Recommender
+              </h1>
+              <p class="text-muted mb-4">
+                Enter a song you love (name + release year) to discover similar
+                tracks!
+              </p>
+
+              <form
+                action="/recommend"
+                method="POST"
+                class="needs-validation"
+                novalidate
+              >
+                <div class="mb-3">
+                  <label for="song" class="form-label">Song Name</label>
+                  <input
+                    type="text"
+                    class="form-control bg-dark text-light border-light"
+                    id="song"
+                    name="song"
+                    placeholder="e.g., Smells Like Teen Spirit"
+                    required
+                  />
+                  <div class="invalid-feedback">Please enter a song name.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="year" class="form-label">Release Year</label>
+                  <input
+                    type="number"
+                    class="form-control bg-dark text-light border-light"
+                    id="year"
+                    name="year"
+                    placeholder="e.g., 1991"
+                    min="1900"
+                    max="2025"
+                    required
+                  />
+                  <div class="invalid-feedback">
+                    Please enter a valid year (1900-2025).
+                  </div>
+                </div>
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-success btn-lg">
+                    <i class="bi bi-play-fill"></i> Get Recommendations
+                  </button>
+                </div>
+              </form>
+
+              <div class="mt-4">
+                <small class="text-muted"
+                  >Powered by K-Means & Spotify data</small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Form validation
+      (function () {
+        "use strict";
+        var forms = document.querySelectorAll(".needs-validation");
+        Array.prototype.slice.call(forms).forEach(function (form) {
+          form.addEventListener(
+            "submit",
+            function (event) {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
+    </script>
+  </body>
+</html>
